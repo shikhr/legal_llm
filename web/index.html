@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Legal LLM</title>
-  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="index.js"></script>
 </head>
 
 <body>
@@ -16,26 +15,17 @@
   </header>
 
   <main>
-    <div class="container">
-      <section id="result">
-        <div id="res">hi</div>
-      </section>
-      <form id="form" py-submit="submit_handler">
-        <div id="prompt">
-          <input type="text" name="prompt-input" id="prompt-input" placeholder="Start your query...">
-          <button type="submit" id="prompt-submit">click</button>
-        </div>
-      </form>
-      <span class="warning">Generated outspanut is not endorsed as legally binding or verified</span>
-    </div>
-  </main>
+    <section id="result">
 
-  <py-config>
-    [splashscreen]
-    enabled = false
-  </py-config>
-  <py-script src="./app.py"></py-script>
-  <script type="py" src="./app.py" config="./pyscript.json"></script>
+    </section>
+    <form id="form">
+      <div id="prompt">
+        <input type="text" name="prompt-input" id="prompt-input" placeholder="Start your query...">
+        <button type="submit" id="prompt-submit">></button>
+      </div>
+      <div class="warning">Generated output is not endorsed as legally binding or verified</div>
+    </form>
+  </main>
 </body>
 
 </html>
