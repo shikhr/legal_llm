@@ -18,23 +18,24 @@
   <main>
     <div class="container">
       <section id="result">
-
+        <div id="res">hi</div>
       </section>
-      <form>
+      <form id="form" py-submit="submit_handler">
         <div id="prompt">
           <input type="text" name="prompt-input" id="prompt-input" placeholder="Start your query...">
-          <button id="prompt-submit" py-click="">></button>
+          <button type="submit" id="prompt-submit">click</button>
         </div>
       </form>
       <span class="warning">Generated outspanut is not endorsed as legally binding or verified</span>
     </div>
   </main>
 
-  <py-config src="./pyscript.json">
+  <py-config>
     [splashscreen]
     enabled = false
   </py-config>
   <py-script src="./app.py"></py-script>
+  <script type="py" src="./app.py" config="./pyscript.json"></script>
 </body>
 
 </html>
