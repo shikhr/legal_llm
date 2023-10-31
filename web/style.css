@@ -1,0 +1,95 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(52, 53, 65);
+  color: #ededed;
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 1 auto;
+}
+header h1 {
+  padding: 0.5rem;
+  color: #686a7c;
+}
+
+main {
+  flex: 1 1 auto;
+  overflow-y: hidden;
+}
+main .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+main #result {
+  padding: 2rem 6rem;
+  overflow-y: auto;
+}
+
+main form {
+  /* width: 100%; */
+  margin-top: auto;
+  padding-top: 1rem;
+  box-shadow: 0 -30px 40px rgba(52, 53, 65, 1);
+}
+
+main form #prompt {
+  margin: 0 4rem;
+  background-color: #40414f;
+  color: white;
+  padding: 1rem 1rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+}
+main form #prompt-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+}
+main form #prompt-submit {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.warning {
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 0.3rem;
+  color: #c5c5d2;
+}
+
+@media screen and (max-width: 900px) {
+  main #result {
+    padding: 2rem 2rem;
+  }
+}
+@media screen and (max-width: 580px) {
+  main #result {
+    padding: 2rem 0rem;
+  }
+  main form #prompt {
+    margin: 0 1rem;
+  }
+}

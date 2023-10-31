@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal LLM</title>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Legal LLM</h1>
+  </header>
+
+  <main>
+    <div class="container">
+      <section id="result">
+
+      </section>
+      <form>
+        <div id="prompt">
+          <input type="text" name="prompt-input" id="prompt-input" placeholder="Start your query...">
+          <button id="prompt-submit" py-click="">></button>
+        </div>
+      </form>
+      <span class="warning">Generated outspanut is not endorsed as legally binding or verified</span>
+    </div>
+  </main>
+
+  <py-config src="./pyscript.json">
+    [splashscreen]
+    enabled = false
+  </py-config>
+  <py-script src="./app.py"></py-script>
+</body>
+
+</html>
