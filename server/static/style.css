@@ -57,7 +57,7 @@ main form #prompt {
   background-color: #40414f;
   color: white;
   padding: 1rem 1rem;
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 1.05rem;
   display: flex;
   flex-direction: row;
@@ -108,7 +108,7 @@ main form .warning {
   gap: 1rem;
   background-color: #4d4f5d;
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .chat-block .display-prompt {
@@ -117,4 +117,67 @@ main form .warning {
 .chat-block .display-response {
   border-top: 1px solid #686a7c;
   padding: 0.5rem 0;
+}
+.display-response.loading {
+  padding: 1rem 1rem;
+}
+.display-response.error {
+  color: rgb(255, 77, 77);
+}
+
+.dot {
+  font-size: 0.2rem;
+}
+
+/**
+ * ==============================================
+ * Dot Flashing
+ * ==============================================
+ */
+.dot-flashing {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #f5f2ff;
+  color: #f5f2ff;
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+.dot-flashing::before,
+.dot-flashing::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+.dot-flashing::before {
+  left: -15px;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #f5f2ff;
+  color: #f5f2ff;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 0s;
+}
+.dot-flashing::after {
+  left: 15px;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #f5f2ff;
+  color: #f5f2ff;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+
+@keyframes dot-flashing {
+  0% {
+    background-color: #f5f2ff;
+  }
+  50%,
+  100% {
+    background-color: rgba(151, 128, 255, 0.373);
+  }
 }
