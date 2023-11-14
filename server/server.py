@@ -12,5 +12,6 @@ def hello_world():
 @app.route("/api/v1/generate", methods=["POST"])
 def generate():
     data = request.json["value"]
-    out = generate_output(data)
+    model_name = request.json["model_name"]
+    out = generate_output(model_name, data)
     return jsonify({"output": out})

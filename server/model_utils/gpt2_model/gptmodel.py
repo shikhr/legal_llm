@@ -5,13 +5,22 @@ from transformers import (
     GPT2Tokenizer,
 )
 
-model_path = "model/full_text"
-
-model = GPT2LMHeadModel.from_pretrained(model_path)
-tokenizer = GPT2Tokenizer.from_pretrained(model_path)
+model_path = {"ipc": "model/ipc", "ildc": "model/full_text"}
 
 
-def generate_text(sequence, max_length):
+def load_model(model_path):
+    model = GPT2LMHeadModel.from_pretrained(model_path)
+    return model
+
+
+def load_tokenizer(tokenizer_path):
+    tokenizer = GPT2Tokenizer.from_pretrained(tokenizer_path)
+    return tokenizer
+
+
+def generate_text(model_path, sequence, max_length):
+    model = load_model(model_path)
+    tokenizer = load_tokenizer(model_path)
     ids = tokenizer.encode(f"{sequence}", return_tensors="pt")
     final_outputs = model.generate(
         ids,
@@ -24,8 +33,8 @@ def generate_text(sequence, max_length):
     return tokenizer.decode(final_outputs[0], skip_special_tokens=True)
 
 
-def generate_output(seq):
+def generate_output(model_name, seq):
     max_len = 200
-    output = generate_text(seq, max_len)
+    output = generate_text(model_path[model_name], seq, max_len)
     print(output)
     return output[len(seq) :]
