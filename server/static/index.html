@@ -12,21 +12,21 @@
 <body>
   <header>
     <h1>Legal LLM</h1>
-    <div class="models" id="models">
-      <div class="model current" id="ildc">
-        <h2 class="name">Legal Cases</h2>
-      </div>
-      <div class="model" id="ipc">
-        <h2 class="name">IPC Sections</h2>
-      </div>
-    </div>
   </header>
+  <div class="models" id="models">
+    <div class="model current" id="ildc">
+      <h2 class="name">Legal Cases</h2>
+    </div>
+    <div class="model" id="ipc">
+      <h2 class="name">IPC Sections</h2>
+    </div>
+  </div>
 
   <main>
     <section id="result"></section>
     <form id="form">
       <div id="prompt">
-        <input type="text" name="prompt-input" id="prompt-input" placeholder="Start your query...">
+        <input type="text" name="prompt-input" id="prompt-input" autocomplete="off" placeholder="Start your query...">
         <button type="submit" id="prompt-submit">></button>
       </div>
       <div class="warning">Generated output is not endorsed as legally binding or verified</div>

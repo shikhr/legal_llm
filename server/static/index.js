@@ -59,6 +59,9 @@ const responseTemplate = (id, prompt, output) => {
 const submitHandler = async (event) => {
   event.preventDefault();
   const value = input.value;
+  if (!value.trim()) {
+    return;
+  }
   const id = new Date().getTime();
   input.value = '';
   res.insertAdjacentHTML('beforeend', responseTemplate(id, value));
@@ -96,3 +99,4 @@ const modelChangeHandler = (e) => {
 
 modelsEl.addEventListener('click', modelChangeHandler);
 form.addEventListener('submit', submitHandler);
+renderResponses(state[curModel.name]);

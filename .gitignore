@@ -1,4 +1,6 @@
 .venv
 server/model/
 .vscode
-__pycache__
+__pycache__/*
+run
+*.pyc

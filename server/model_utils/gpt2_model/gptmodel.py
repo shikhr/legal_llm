@@ -35,6 +35,7 @@ def generate_text(model_path, sequence, max_length):
 
 def generate_output(model_name, seq):
     max_len = 200
+    seq = seq + "<|endoftext|>"
     output = generate_text(model_path[model_name], seq, max_len)
     print(output)
     return output[len(seq) :]
