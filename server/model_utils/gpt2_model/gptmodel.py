@@ -4,6 +4,10 @@ from transformers import (
     GPT2TokenizerFast,
     GPT2Tokenizer,
 )
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+import os
 
 model_path = {"ipc": "model/ipc", "ildc": "model/full_text"}
 
@@ -19,6 +23,8 @@ def load_tokenizer(tokenizer_path):
 
 
 def generate_text(model_path, sequence, max_length):
+    offset = len(sequence) + 1
+    sequence += "<|endoftext|>"
     model = load_model(model_path)
     tokenizer = load_tokenizer(model_path)
     ids = tokenizer.encode(f"{sequence}", return_tensors="pt")
@@ -29,14 +35,27 @@ def generate_text(model_path, sequence, max_length):
         pad_token_id=model.config.eos_token_id,
         top_k=50,
         top_p=0.95,
+        num_return_sequences=3,
     )
-    return tokenizer.decode(final_outputs[0], skip_special_tokens=True)
+    out = [
+        tokenizer.decode(out, skip_special_tokens=True)[offset:]
+        for out in final_outputs
+    ]
+    sentences = [sequence[: offset - 1]] + out
+
+    model_path = os.path.join(os.getcwd(), "model/InLegalBERT")
+    model = SentenceTransformer(model_path)
+    print("")
+    sen_embeddings = model.encode(sentences)
+    similarity = cosine_similarity([sen_embeddings[0]], sen_embeddings[1:])[0]
+    for sen, sim in zip(sentences[1:], similarity):
+        print("\n", sen, "  : ", sim)
+    return sentences[np.argmax(similarity) + 1], np.max(similarity)
 
 
 def generate_output(model_name, seq):
-    max_len = 200
-    offset = len(seq) + 1
-    seq = seq + "<|endoftext|>"
-    output = generate_text(model_path[model_name], seq, max_len)
-    print(output)
-    return output[offset:]
+    max_len = 300
+    output, similarity = generate_text(model_path[model_name], seq, max_len)
+    print("\noutput\n", output)
+    print("similarity:", similarity)
+    return output
